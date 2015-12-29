@@ -1,0 +1,30 @@
+ADVANCED AGGREGATES
+
+--
+
+At the heart of every great business decision is data. Since most businesses store critical data in SQL databases, a deep understanding of SQL is a necessary skill for every data analyst.
+
+Chief among data analysis tasks is data aggregation, the grouping of data to express in summary form. We'll be working with SpeedySpoon, a meal delivery app. The folks at SpeedySpoon have asked us to look into their deliveries and help them optimize their process.
+
+This course was developed in partnership with our good friends at Periscope Data. If you're new to SQL, we recommend you do this course first.
+
+--
+
+Nice work! Now that we have a good handle on our data, let's dive into some common business queries. We'll begin with the Daily Count of orders placed. To make our Daily Count metric, we'll focus on the date function and the ordered_at field.
+
+To get the Daily Metrics we need the date. Most dates in databases are timestamps, which have hours and minutes, as well as the year, month, and day. Timestamps look like 2015-01-05 14:43:31, while dates are the first part: 2015-01-05.
+
+We can easily select the date an item was ordered at with the date function and the ordered_at field:
+
+select date(ordered_at)
+from orders;
+
+--
+
+How Do You Do-While?
+You may have noticed that a while loop checks the loop condition before each iteration of the code inside. A logical alternative is to check the condition after each iteration before looping back. A do/while loop does just that. One consequence of this difference is that the code inside a while loop can be bypassed entirely whereas the code inside a do/while loop will execute at least once.
+
+This means that the loop condition can depend exclusively on code within the loop's body. This is the case for the code in the editor where each iteration represents a coin flip, and any time the result of the coin flip is tails, the loop stops.
+
+--
+
