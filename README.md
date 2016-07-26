@@ -148,17 +148,54 @@ The INSERT INTO statement is used to insert new records in a table.
 	INSERT INTO table_name (column1, column2, column3, ...)
 	VALUES (value1, value2, value3, ...);
 
-	
+EXAMPLES
 
+	INSERT INTO Customers(CustomerName, City, Country)
+	VALUES ('David', 'Santa Barbara', 'USA');
 
+--
 
+UPDATE
 
-mysql -u root -p
-enter password:
+The UPDATE statement is used to update existing records in a table.
 
-CREATE DATABASE test3;
-SHOW DATABASES;
+	UPDATE table_name
+	SET column1 = value1, column2 = value2, ...
+	WHERE some_column = some_value;
 
-USE test3;
-SELECT DATABASE();
-DROP DATABASE IF EXISTS test3;
+EXAMPLE:
+
+	UPDATE Customers
+	SET ContactName='Alfred Schmidt', City='Hamburg'
+	WHERE CustomerName='Alfreds Futterkiste';
+
+When updating records, it's always important to remember to include the WHERE keyword to specify which record to update. Otherwise, all records will update.
+
+--
+
+LOGGING INTO MYSQL AS ROOT USER
+
+	mysql -u root -p
+
+--
+
+CREATING DATABASE
+
+	CREATE DATABASE database_name;
+
+--
+
+SHOWING DATABASES
+
+	SHOW DATABASES;
+
+--
+
+USING A DATABASE
+
+	USE database_name;
+--
+
+DELETING (DROPPING) DATABASE
+
+	DROP DATABASE IF EXISTS database_name;
