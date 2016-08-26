@@ -257,3 +257,208 @@ SELECT from Nobel Tutorial
 		(yr = 1980  AND subject = 'Physics')
 		OR 
 		(yr = 1984 AND subject = 'Chemistry');
+
+--
+
+9)
+
+	SELECT *
+	FROM nobel
+	WHERE yr = 1980 AND subject <> 'Chemistry' AND subject <> 'Medicine';
+
+--
+
+10)
+
+	SELECT *
+	FROM nobel
+	WHERE (subject = 'Medicine' AND yr < 1910) OR (subject = 'Literature' AND yr >= 2004);
+
+--
+
+11)
+
+	SELECT *
+	FROM nobel
+	WHERE winner = 'PETER GRÜNBERG';
+
+--
+
+12)
+
+	SELECT *
+	FROM nobel
+	WHERE winner = 'EUGENE O\'NEILL';
+
+--
+
+13)
+
+	SELECT winner, yr, subject
+	FROM nobel
+	WHERE winner LIKE 'Sir%'
+	ORDER BY yr DESC, winner;
+
+--
+
+14)
+
+	SELECT winner, subject
+	FROM nobel
+	WHERE yr=1984
+	ORDER BY subject IN ('Physics','Chemistry') ASC, subject, winner;
+
+--
+
+Some Nobel QUIZ answers:
+
+--
+
+	SELECT COUNT(DISTINCT yr)
+	FROM nobel
+	WHERE
+		yr NOT IN
+			(	
+				SELECT DISTINCT yr
+				FROM nobel
+			W	HERE subject = 'Medicine'
+			);
+
+--
+
+	SELECT yr
+	FROM nobel
+	WHERE yr NOT IN
+		(
+			SELECT yr
+			FROM nobel
+			WHERE subject IN ('Chemistry','Physics')
+		);
+
+--
+
+	SELECT DISTINCT yr
+	FROM nobel
+	WHERE subject = 'Medicine' 
+		AND
+		yr NOT IN
+			(
+				SELECT yr
+				FROM nobel
+				WHERE subject = 'Peace' 
+			)
+		AND
+		yr NOT IN
+			(
+				SELECT yr
+				FROM nobel
+				WHERE subject = 'Literature'
+			);
+
+--
+
+SELECT within SELECT Tutorial
+
+--
+
+1)
+
+	SELECT name
+	FROM world
+	WHERE population > 
+		(
+			SELECT population
+			FROM world
+			WHERE name = 'Russia'
+		);
+
+--
+
+2)
+
+	SELECT name
+	FROM world
+	WHERE continent = 'Europe'
+		AND gdp / population > 
+			(
+				SELECT gdp / population
+				FROM world
+				WHERE name = 'United Kingdom'
+			);
+
+--
+
+3)
+
+	SELECT name, continent
+	FROM world
+	WHERE continent IN
+		(
+			SELECT continent
+			FROM world
+			WHERE name = 'Argentina'
+		)
+		OR continent IN
+		(
+			SELECT continent
+			FROM world
+			WHERE name = 'Australia'
+		)
+	ORDER BY name;
+
+--
+
+4)
+
+	SELECT name, population
+	FROM world
+	WHERE population >
+		(
+			SELECT population
+			FROM world
+			WHERE name = 'Canada'
+		)
+		AND population <
+		(
+			SELECT population
+			FROM world
+			WHERE name = 'Poland'
+		);
+
+--
+
+5)
+
+	SELECT name, 
+	CONCAT(ROUND(population / (SELECT population FROM world WHERE name = 'Germany') * 100, 0), '%')
+	FROM world
+	WHERE continent = 'Europe';
+
+--
+
+6)
+
+	SELECT name
+	FROM world
+	WHERE gdp > ALL
+		(
+			SELECT gdp
+			FROM world
+			WHERE continent = 'Europe'
+				AND gdp > 0
+		);
+	
+--
+
+7)
+
+	SELECT continent, name, area
+	FROM world x
+	WHERE area >= ALL
+		(
+			SELECT area
+			FROM world
+			WHERE y.continent = x.continent
+				AND area > 0
+		);
+ 
