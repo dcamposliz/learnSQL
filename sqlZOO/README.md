@@ -891,6 +891,36 @@ The JOIN operation
 	FROM goal JOIN eteam ON (goal.teamid = eteam.id)
 	WHERE gtime <= 10;
 
+6)
+
+	SELECT mdate, teamname
+	FROM game JOIN eteam ON (game.team1 = eteam.id)
+	WHERE coach = 'Fernando Santos';
+
+7)
+
+	SELECT player
+	FROM goal JOIN game ON (goal.matchid = game.id)
+	WHERE stadium = 'National Stadium, Warsaw';
+
+8)
+
+	SELECT distinct player
+	FROM goal JOIN game ON (goal.matchid = game.id)
+	WHERE (game.team1 = 'GER' OR game.team2 = 'GER')
+	AND goal.teamid != 'GER';
+
+9)
+
+	SELECT teamname COUNT ()
+	FROM eteam JOIN 
+
+	...
+
+
+
+
+
 
 
 
