@@ -859,3 +859,38 @@ The nobel table can be used to practice more SUM and COUNT functions.
 
 The JOIN operation
 
+--
+
+1)
+
+	SELECT matchid, player
+	FROM goal
+	WHERE teamid = 'GER';
+
+2)
+
+	SELECT id, stadium, team1, team2
+	FROM game
+	WHERE id = 1012;
+
+3)
+
+	SELECT player, teamid, stadium, mdate
+	FROM game JOIN goal ON (game.id = goal.matchid)
+	WHERE teamid = 'GER';
+
+4)
+
+	SELECT team1, team2, goal.player
+	FROM game JOIN goal ON (game.id = goal.matchid)
+	WHERE goal.player LIKE 'Mario%';
+
+5)
+
+	SELECT player, teamid, coach, gtime
+	FROM goal JOIN eteam ON (goal.teamid = eteam.id)
+	WHERE gtime <= 10;
+
+
+
+
