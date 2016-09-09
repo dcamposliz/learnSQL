@@ -912,15 +912,45 @@ The JOIN operation
 
 9)
 
-	SELECT teamname COUNT ()
-	FROM eteam JOIN 
+	SELECT distinct teamname, count(teamid)
+	FROM eteam JOIN goal ON (eteam.id = goal.teamid)
+	GROUP BY teamname;
 
-	...
+10)
+
+	SELECT distinct stadium, count(matchid)
+	FROM game JOIN goal ON (game.id = goal.matchid)
+	GROUP BY stadium;
+
+11)
+
+	SELECT distinct goal.matchid, game.mdate, COUNT(teamid)
+	FROM goal JOIN game ON (goal.matchid = game.id)
+	WHERE (team1 = 'POL' OR team2 = 'POL')
+	GROUP BY mdate, matchid;
+
+12)
+
+	SELECT distinct goal.matchid, game.mdate, COUNT(goal.teamid)
+	FROM goal JOIN game ON (goal.matchid = game.id)
+	WHERE goal.teamid = 'GER'
+	GROUP BY goal.matchid, game.mdate;
+
+13)
+
+	SELECT mdate, team1,
+	CASE 
+		WHEN teamid = team1
+			THEN 1
+			ELSE 0
+		score1
+	FROM game JOIN goal ON matchid = id
 
 
+	SELECT mdate, matchid, team1, team2
+	FROM game JOIN goal on matchid = id;
 
-
-
+	THIS ONE IS WRONG AND NOT COMPLETE
 
 
 
